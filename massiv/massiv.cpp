@@ -207,3 +207,55 @@ int main() {
     return 0;
 }*/
 
+#include <iostream>
+using namespace std;
+
+// Функция создает и заполняет двумерный массив
+int** creat(int& n, int& m){
+    cout << "n = ";
+    cin >> n;
+    cout << "m = ";
+    cin >> m;
+
+
+    int** mas = new int* [n];
+    for (int i = 0; i < n; i++)
+        mas[i] = new int[m];
+    for (int i = 0; i < n; i++)
+        for (int j = 0; j < m; j++){
+            cout << "mas[" << i << "][" << j << " ] = ";
+            cin >> mas[i][j];
+        }
+
+            
+
+    return mas;
+
+}
+
+int main() {
+
+    int n, m, k = 0;
+    int s = 0;
+    int** a = creat(n, m);
+    for (int i = 0; i < n; i++) // обработка элементов массива
+        for (int j = 0; j < m; j++) {
+            if (a[i][j] % 2 == 0) // если элемент массива четный,
+
+                // то добавляем его к сумме и увеличиваем количество
+                // четных элементов на 1
+                s += a[i][j];
+            k++;
+
+        }
+
+        if (k)
+        cout << (double)s / k;
+        else
+        cout << " Четных элементов в массиве нет ";
+        for (int i = 0; i < n; i++)
+            delete[] a[i];
+        delete[] a;
+        return 0;
+
+}
